@@ -3,17 +3,20 @@ from tkinter import *
 from tkinter import ttk
 from tkinter import messagebox
 import csv
+import subprocess
 
 
 
 #accounts = {"Test" : "Test1", "Test2" : "Password"}
 
 
-with open('Skoleni.csv','r') as file:
-    csv1 = csv.DictReader(file)
-    data = [row for row in csv1]
+# with open('Skoleni.csv','r',encoding='utf-8') as file:
+#     csv1 = csv.DictReader(file)
+#     data = [row for row in csv1]
 
-print(data)
+# print(data)
+
+
 
 Logs=Tk()# loga objekts
 Logs.title("Mācību konsultācijas")
@@ -24,13 +27,16 @@ def login():
     username = username_entry.get()
     password = password_entry.get()
 
-    if username and password:
-        messagebox.showinfo("Pieslēgšanās veiksmīga", "Cau")
-        with open('logs1stud.py', 'r') as file:
-            code = file.read()
-            exec(code)
-    else:
-        messagebox.showerror("Kļūda", "Nepareizs lietotāja vārds vai parole!")
+    with open('Skoleni.csv',mode='r') as file:
+        csv1 = csv.reader(file)
+        next(csv1)
+    print(csv1)
+    for row in csv1:
+        if row[0] == username and row[1] == password:
+            Logs.destroy()
+            subprocess.call(['python', 'logs1stud.py'])
+        else:
+            messagebox.showerror("Kļūda", "Nepareizs lietotāja vārds vai parole!")
 
 ttk.Label(Logs, text="Personas kods",font="Arial 20",background='#f9f9f9').grid(row=2, column=1, padx=30, pady=40)
 username_entry = ttk.Entry(Logs, font="Arial",background='#f9f9f9')
