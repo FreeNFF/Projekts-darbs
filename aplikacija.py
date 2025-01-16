@@ -5,11 +5,6 @@ from tkinter import messagebox
 import csv
 import subprocess
 
-
-
-#accounts = {"Test" : "Test1", "Test2" : "Password"}
-
-
 # with open('Skoleni.csv','r',encoding='utf-8') as file:
 #     csv1 = csv.DictReader(file)
 #     data = [row for row in csv1]
@@ -28,9 +23,7 @@ def login():
     password = password_entry.get()
 
     with open('Skoleni.csv',mode='r') as file:
-        csv1 = csv.reader(file)
-        next(csv1)
-    print(csv1)
+        csv1 = csv.DictReader(file)
     for row in csv1:
         if row[0] == username and row[1] == password:
             Logs.destroy()
