@@ -2,13 +2,18 @@ import tkinter as tk
 from tkinter import *
 from tkinter import ttk
 from tkinter import messagebox
+import csv
 
 
 
 #accounts = {"Test" : "Test1", "Test2" : "Password"}
 
 
+with open('Skoleni.csv','r') as file:
+    csv1 = csv.DictReader(file)
+    data = [row for row in csv1]
 
+print(data)
 
 Logs=Tk()# loga objekts
 Logs.title("Mācību konsultācijas")
@@ -19,12 +24,13 @@ def login():
     username = username_entry.get()
     password = password_entry.get()
 
-    # print(username, password)
-
-    if username == "john" and password == "parole":
-        messagebox.showinfo("Login info", "Welcome John")
+    if username and password:
+        messagebox.showinfo("Pieslēgšanās veiksmīga", "Cau")
+        with open('logs1stud.py', 'r') as file:
+            code = file.read()
+            exec(code)
     else:
-        messagebox.showerror("Piere", "Incorrect username")
+        messagebox.showerror("Kļūda", "Nepareizs lietotāja vārds vai parole!")
 
 ttk.Label(Logs, text="Personas kods",font="Arial 20",background='#f9f9f9').grid(row=2, column=1, padx=30, pady=40)
 username_entry = ttk.Entry(Logs, font="Arial",background='#f9f9f9')
