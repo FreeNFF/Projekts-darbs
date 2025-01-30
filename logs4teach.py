@@ -17,10 +17,10 @@ tk.Button(Logs4t, text="Dzēst",font="Arial",bd=5).grid(row=3, column=0, padx=1,
 tk.Button(Logs4t, text="Labot",font="Arial",bd=5).grid(row=4, column=0, padx=1, pady=10)
 tk.Button(Logs4t, text="Dzēst visas",font="Arial",bd=5).grid(row=5, column=0, padx=1, pady=10)
 
-tk.Button(Logs4t, text="Atgriezties",font="Arial",bd=5, command=lambda:uzlogu1()).grid(row=6, column=1, padx=10, pady=10)
+tk.Button(Logs4t, text="Atgriezties",font="Arial",bd=5, command=lambda:uzlogu1()).grid(row=6, column=0, padx=10, pady=10)
 
 def uzlogu1():
     Logs4t.destroy()
-    subprocess.call(['python', 'logs1teach.py'])
+    subprocess.call(['python', 'logs3teach.py'])
 
 Logs4t.mainloop()

@@ -34,11 +34,14 @@ def login():
     with open('Skoleni.csv',mode='r',newline='', encoding="utf-8") as file:
          csv1 = csv.DictReader(file)
          for row in csv1:
-            if row[1] == username and row[1] == password:
-                Logs.destroy()
-                subprocess.call(['python', 'logs1stud.py'])
-            else:
-                messagebox.showerror("Kļūda", "Nepareizs lietotāja vārds vai parole!")
+             if len(row) ==2:
+                 lietotaji[row[0]] = row
+    return lietotaji
+            # if row[1] == username and row[1] == password:
+            #     Logs.destroy()
+            #     subprocess.call(['python', 'logs1stud.py'])
+            # else:
+            #     messagebox.showerror("Kļūda", "Nepareizs lietotāja vārds vai parole!")
 
 
 tk.Button(Logs, text="Pieslēgties",font="Arial",bd=5, command=login).grid(row=6, column=1, padx=100, pady=40)
