@@ -28,6 +28,7 @@ password_entry.grid(row=5, column=1, padx=30, pady=10)
 
 def login():
 
+    lietotaji={}
     username = username_entry.get()
     password = password_entry.get()
 

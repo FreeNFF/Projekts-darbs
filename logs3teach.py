@@ -23,17 +23,19 @@ cal = Calendar(Logs3t, selectmode = 'day',
                day= todayd)
  
 cal.grid(padx=25, pady = 20)
-date=0
+
+choosen_date= cal.get_date()
+
+
 def grad_date():
-    date.config(text = "Selected Date is: " + cal.get_date())
+    Logs3t.destroy()
+    subprocess.call(['python', 'logs4teach.py'])
+
 
 
  
 # Add Button and Label
-Button(Logs3t, text = "Izvēlēties datumu",command = grad_date).grid(pady = 20)
- 
-date = Label(Logs3t, text = "")
-date.grid(pady = 20)
+Button(Logs3t, text = "Izvēlēties datumu", font="Arial",bd=5, command = grad_date).grid(pady = 20)
 
 tk.Button(Logs3t, text="Atgriezties",font="Arial",bd=5, command=lambda:uzlogu1()).grid(row=3, column=0, padx=20, pady=20)
 
