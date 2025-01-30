@@ -34,7 +34,7 @@ def login():
     with open('Skoleni.csv',mode='r',newline='', encoding="utf-8") as file:
          csv1 = csv.DictReader(file)
          for row in csv1:
-            if row['lietotajs'] == username and row['parole'] == password:
+            if row[1] == username and row[1] == password:
                 Logs.destroy()
                 subprocess.call(['python', 'logs1stud.py'])
             else:
