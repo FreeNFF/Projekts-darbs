@@ -14,6 +14,10 @@ Logs1t.configure(background="#f9f9f9")
 
 tk.Button(Logs1t, text="Pieteikt konsultāciju",font="Arial",bd=5).grid(row=1, column=1, padx=75, pady=40)
 tk.Button(Logs1t, text="Skatīt kalendāru",font="Arial",bd=5).grid(row=2, column=1, padx=75, pady=40)
-tk.Button(Logs1t, text="Atgriezties",font="Arial",bd=5).grid(row=6, column=1, padx=75, pady=40)
+tk.Button(Logs1t, text="Izrakstīties",font="Arial",bd=5).grid(row=6, column=1, padx=75, pady=40)
+
+def uzlogu1():
+    Logs1t.destroy()
+    subprocess.call(['python', 'aplikacija.py'])
 
 Logs1t.mainloop()
