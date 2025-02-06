@@ -41,7 +41,7 @@ choosen_date= cal.get_date()
 
  
 # Add Button and Label
-Button(Logs3t, text = "Izvēlēties datumu", font="Arial",bd=5, command = grad_date()).grid(pady = 20)
+Button(Logs3t, text = "Izvēlēties datumu", font="Arial",bd=5, command = grad_date).grid(pady = 20)
 
 tk.Button(Logs3t, text="Atgriezties",font="Arial",bd=5, command=lambda:uzlogu1()).grid(row=3, column=0, padx=20, pady=20)
 

@@ -27,17 +27,19 @@ beigas_entry.grid(row=5, column=2, padx=10, pady=10)
 
 
 
-tk.Button(Logs5t, text="Labot šo konsultāciju",font="Arial",bd=5).grid(row=8, column=1, padx=20, pady=20)
-tk.Button(Logs5t, text="Labot visas konsultācijas",font="Arial",bd=5).grid(row=9, column=1, padx=20, pady=20)
-tk.Button(Logs5t, text="Atgriezties",font="Arial",bd=5,command=lambda:uzlogu4()).grid(row=10, column=1, padx=20, pady=20)
+tk.Button(Logs5t, text="Labot šo konsultāciju",font="Arial",bd=5,command=lambda:uzlogu3t()).grid(row=8, column=1, padx=20, pady=20)
+tk.Button(Logs5t, text="Labot visas konsultācijas",font="Arial",bd=5,command=lambda:uzlogu3t()).grid(row=9, column=1, padx=20, pady=20)
+tk.Button(Logs5t, text="Atgriezties",font="Arial",bd=5,command=lambda:uzlogu4t()).grid(row=10, column=1, padx=20, pady=20)
 
 
-def uzlogu4():
+def uzlogu4t():
     Logs5t.destroy()
     subprocess.call(['python', 'logs4teach.py'])
 
 
-
+def uzlogu3t():
+    Logs5t.destroy()
+    subprocess.call(['python','logs3teach.py'])
 
 
 

@@ -49,11 +49,13 @@ diena_entry = ttk.Entry(Logs2t, width=5, font="Arial",background='#f9f9f9')
 diena_entry.grid(row=7, column=1, padx=10, pady=10)
 
 
-tk.Button(Logs2t, text="Pieteikt",font="Arial",bd=5).grid(row=8, column=1, padx=20, pady=20)
+tk.Button(Logs2t, text="Pieteikt",font="Arial",bd=5, command=lambda:uzlogu1()).grid(row=8, column=1, padx=20, pady=20)
 tk.Button(Logs2t, text="Atgriezties",font="Arial",bd=5, command=lambda:uzlogu1()).grid(row=9, column=1, padx=20, pady=20)
 
 def uzlogu1():
     Logs2t.destroy()
     subprocess.call(['python', 'logs1teach.py'])
+
+
 
 Logs2t.mainloop()
