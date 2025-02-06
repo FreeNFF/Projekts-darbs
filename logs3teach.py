@@ -31,10 +31,12 @@ global choosen_date
 
 
 def grad_date():
-    choosen_date = cal.get_date()
+    choosen_date = date.cal.get_date()
     izveletsd = int(choosen_date.strftime('%d'))
     izveletsm= int(choosen_date.strftime('%m'))
     izveletsg = int(choosen_date.strftime('%Y'))
+
+    
 
     print(izveletsd,izveletsm,izveletsg)
     Logs3t.destroy()
