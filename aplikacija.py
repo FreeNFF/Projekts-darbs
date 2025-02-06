@@ -14,7 +14,6 @@ import subprocess
 
 #python .\aplikacija.py
 
-
 Logs=Tk()# loga objekts
 Logs.title("Mācību konsultācijas")
 Logs.geometry("300x500")

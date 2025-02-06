@@ -15,11 +15,11 @@ Logs3s.configure(background="#f9f9f9")
 sodien = date.today()
 sodiend = int(sodien.strftime('%d'))
 sodienm = int(sodien.strftime('%m'))
-sodieny = int(sodien.strftime('%Y'))
+sodieng = int(sodien.strftime('%Y'))
 
 
 cal = Calendar(Logs3s, selectmode = 'day',
-               year = sodieny, month = sodienm,
+               year = sodieng, month = sodienm,
                day= sodiend)
  
 cal.grid(padx=25, pady = 20)
