@@ -12,6 +12,8 @@ import subprocess
 # print(data)
 
 
+#python .\aplikacija.py
+
 
 Logs=Tk()# loga objekts
 Logs.title("Mācību konsultācijas")

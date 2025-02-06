@@ -4,14 +4,14 @@ from tkinter import ttk
 from tkinter import messagebox
 import subprocess
 
-Logs4s=Tk()
-Logs4s.title("Izvelne")
-Logs4s.geometry("300x500")
-Logs4s.configure(background="#f9f9f9")
+Logs5s=Tk()
+Logs5s.title("Kalendārs")
+Logs5s.geometry("300x500")
+Logs5s.configure(background="#f9f9f9")
 
 
 
 
 
 
-Logs4s.mainloop()
+Logs5s.mainloop()
