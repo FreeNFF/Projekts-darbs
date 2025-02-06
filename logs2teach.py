@@ -25,12 +25,15 @@ ttk.Label(Logs2t, text="Kabinets",font="Arial 15",background='#f9f9f9').grid(row
 kabinets_entry = ttk.Entry(Logs2t, width=10, font="Arial",background='#f9f9f9')
 kabinets_entry.grid(row=2, column=1, padx=20, pady=10)
 
+kabinets = kabinets_entry.get()
 
 ttk.Label(Logs2t, text="Konsultācijas laiks",font="Arial 15",background='#f9f9f9').grid(row=3, column=1, padx=10, pady=10)
 
 ttk.Label(Logs2t, text="Sākums",font="Arial 10",background='#f9f9f9').grid(row=4, column=1, padx=5, pady=10)
 sakums_entry = ttk.Entry(Logs2t, width=5, font="Arial",background='#f9f9f9')
 sakums_entry.grid(row=5, column=1, padx=5, pady=10)
+
+kons_sakums= 
 
 ttk.Label(Logs2t, text="Beigas",font="Arial 10",background='#f9f9f9').grid(row=4, column=2, padx=10, pady=10)
 beigas_entry = ttk.Entry(Logs2t, width=5, font="Arial",background='#f9f9f9')

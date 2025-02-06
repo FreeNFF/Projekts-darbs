@@ -28,13 +28,13 @@ def login():
     with open('Skoleni.csv',mode='r',newline='', encoding="utf-8") as file:
          csv1 = csv.DictReader(file)
          for row in csv1:
-             if len(row) ==2:
+            if len(row) ==2:
                  lietotaji[row[0]] = row
-         if row[1] == username and row[1] == password:
-            Logs.destroy()
-            subprocess.call(['python', 'logs1stud.py'])
-        else:
-            messagebox.showerror("Kļūda", "Nepareizs lietotāja vārds vai parole!")
+            if row[0] == username and row[0] == password:
+                Logs.destroy()
+                subprocess.call(['python', 'logs1stud.py'])
+            else:
+                messagebox.showerror("Kļūda", "Nepareizs lietotāja vārds vai parole!")
 
 
 ttk.Label(Logs, text="Lietotājvārds",font="Arial 20",background='#f9f9f9').grid(row=2, column=1, padx=30, pady=40)
