@@ -20,6 +20,7 @@ def grad_date():
 
 
 
+
 sodien = date.today()
 sodiend = int(sodien.strftime('%d'))
 sodienm = int(sodien.strftime('%m'))
