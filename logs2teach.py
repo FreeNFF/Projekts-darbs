@@ -17,7 +17,10 @@ global beigas_entry
 global diena_entry
 
 
-
+global kabinets
+global kons_sakums
+global beigas_kons
+global diena
 
 
 
@@ -33,15 +36,19 @@ ttk.Label(Logs2t, text="Sākums",font="Arial 10",background='#f9f9f9').grid(row=
 sakums_entry = ttk.Entry(Logs2t, width=5, font="Arial",background='#f9f9f9')
 sakums_entry.grid(row=5, column=1, padx=5, pady=10)
 
-kons_sakums= 
+kons_sakums= sakums_entry.get()
 
 ttk.Label(Logs2t, text="Beigas",font="Arial 10",background='#f9f9f9').grid(row=4, column=2, padx=10, pady=10)
 beigas_entry = ttk.Entry(Logs2t, width=5, font="Arial",background='#f9f9f9')
 beigas_entry.grid(row=5, column=2, padx=10, pady=10)
 
-ttk.Label(Logs2t, text="Diena",font="Arial 10",background='#f9f9f9').grid(row=6, column=1, padx=5, pady=10)
+beigas_kons = beigas_entry.get()
+
+ttk.Label(Logs2t, text="Diena (angliski)",font="Arial 10",background='#f9f9f9').grid(row=6, column=1, padx=5, pady=10)
 diena_entry = ttk.Entry(Logs2t, width=5, font="Arial",background='#f9f9f9')
 diena_entry.grid(row=7, column=1, padx=10, pady=10)
+
+diena = diena_entry.get()
 
 
 tk.Button(Logs2t, text="Pieteikt",font="Arial",bd=5).grid(row=8, column=1, padx=20, pady=20)
