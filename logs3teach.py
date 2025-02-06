@@ -12,15 +12,15 @@ Logs3t.title("Kalendārs")
 Logs3t.geometry("300x500")
 Logs3t.configure(background="#f9f9f9")
 
-today = date.today()
-todayd = int(today.strftime('%d'))
-todaym = int(today.strftime('%m'))
-todayy = int(today.strftime('%Y'))
+sodien = date.today()
+sodiend = int(sodien.strftime('%d'))
+sodienm = int(sodien.strftime('%m'))
+sodieng = int(sodien.strftime('%Y'))
 
 
 cal = Calendar(Logs3t, selectmode = 'day',
-               year = todayy, month = todaym,
-               day= todayd)
+               year = sodieng, month = sodienm,
+               day= sodiend)
  
 cal.grid(padx=25, pady = 20)
 
