@@ -27,18 +27,25 @@ cal = Calendar(Logs3t, selectmode = 'day',
 cal.grid(padx=25, pady = 20)
 
 
-choosen_date= cal.get_date()
+global choosen_date
 
 
 def grad_date():
+    choosen_date = cal.get_date()
+    izveletsd = int(choosen_date.strftime('%d'))
+    izveletsm= int(choosen_date.strftime('%m'))
+    izveletsg = int(choosen_date.strftime('%Y'))
+
+    print(izveletsd,izveletsm,izveletsg)
     Logs3t.destroy()
     subprocess.call(['python', 'logs4teach.py'])
-
+    
+    
 
 
  
 
-Button(Logs3t, text = "Izvēlēties datumu", font="Arial",bd=5, command =lambda: grad_date()).grid(pady = 20)
+Button(Logs3t, text = "Izvēlēties datumu", font="Arial",bd=5, command = grad_date).grid(pady = 20)
 
 tk.Button(Logs3t, text="Atgriezties",font="Arial",bd=5, command=lambda:uzlogu2t()).grid(row=3, column=0, padx=20, pady=20)
 
