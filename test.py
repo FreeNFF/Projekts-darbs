@@ -2,7 +2,7 @@
 # from tkinter import *
 # from tkinter import ttk
 # from tkinter import messagebox
-import csv
+# import csv
 # import subprocess
 
 # Logs = Tk()  # Loga objekts
@@ -50,3 +50,12 @@ import csv
 #     saraksts = list(csv1)
 #     print("Izdruka ir: ", saraksts)
 #     print("--------------------------------------------------------")
+
+
+
+name = "Alie"
+age = 30
+city = "New York"
+
+with open("pieteikumi.txt","a") as file:
+    file.write(f"Name: {name}, Age: {age}, City: {city}.\n")
