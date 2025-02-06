@@ -29,7 +29,7 @@ choosen_date= cal.get_date()
 
 def grad_date():
     Logs5s.destroy()
-    subprocess.call(['python', 'logs4teach.py'])
+    subprocess.call(['python', 'logs1stud6.py'])
 
 
 
@@ -37,11 +37,11 @@ def grad_date():
 
 Button(Logs5s, text = "Izvēlēties datumu", font="Arial",bd=5, command = grad_date).grid(pady = 20)
 
-tk.Button(Logs5s, text="Atgriezties",font="Arial",bd=5, command=lambda:uzlogu1()).grid(row=3, column=0, padx=20, pady=20)
+tk.Button(Logs5s, text="Atgriezties",font="Arial",bd=5, command=lambda:uzlogu1s()).grid(row=3, column=0, padx=20, pady=20)
 
-def uzlogu1():
+def uzlogu1s():
     Logs5s.destroy()
-    subprocess.call(['python', 'logs1teach.py'])
+    subprocess.call(['python', 'logs1stud.py'])
 
 
 

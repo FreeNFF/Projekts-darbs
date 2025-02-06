@@ -26,7 +26,7 @@ def uzlogu1():
 
 
 
-tk.Button(Logs1s, text="Pieteikties konsultācijai",font="Arial",bd=5,command=lambda:uzlogu2s).grid(row=1, column=1, padx=65, pady=40)
+tk.Button(Logs1s, text="Pieteikties konsultācijai",font="Arial",bd=5,command=lambda:uzlogu2s()).grid(row=1, column=1, padx=65, pady=40)
 tk.Button(Logs1s, text="Skatīt kalendāru",font="Arial",bd=5, command=lambda:uzlogu5s()).grid(row=2, column=1, padx=65, pady=40)
 tk.Button(Logs1s, text="Izrakstīties",font="Arial",bd=5, command=lambda:uzlogu1()).grid(row=6, column=1, padx=65, pady=40)
 

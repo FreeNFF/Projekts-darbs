@@ -12,6 +12,14 @@ Logs3t.title("Kalendārs")
 Logs3t.geometry("300x500")
 Logs3t.configure(background="#f9f9f9")
 
+def grad_date():
+    Logs3t.destroy()
+    subprocess.call(['python', 'logs4teach.py'])
+
+
+
+
+
 sodien = date.today()
 sodiend = int(sodien.strftime('%d'))
 sodienm = int(sodien.strftime('%m'))
@@ -27,15 +35,13 @@ cal.grid(padx=25, pady = 20)
 choosen_date= cal.get_date()
 
 
-def grad_date():
-    Logs3t.destroy()
-    subprocess.call(['python', 'logs4teach.py'])
+
 
 
 
  
 # Add Button and Label
-Button(Logs3t, text = "Izvēlēties datumu", font="Arial",bd=5, command = grad_date).grid(pady = 20)
+Button(Logs3t, text = "Izvēlēties datumu", font="Arial",bd=5, command = grad_date()).grid(pady = 20)
 
 tk.Button(Logs3t, text="Atgriezties",font="Arial",bd=5, command=lambda:uzlogu1()).grid(row=3, column=0, padx=20, pady=20)
 

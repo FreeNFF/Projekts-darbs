@@ -27,5 +27,3 @@ def uzlogu4():
 def uzlogu5():
     Logs4t.destroy()
     subprocess.call(['python', 'logs5teach.py'])
-
-Logs4t.mainloop()

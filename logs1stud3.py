@@ -22,7 +22,12 @@ cal = Calendar(Logs3s, selectmode = 'day',
                year = sodieng, month = sodienm,
                day= sodiend)
  
+
+
 cal.grid(padx=25, pady = 20)
+
+entry_label = tk.Label(Logs3s, text='Enter date (YYYY-MM-DD): ')
+entry = tk.Entry(Logs3s)
 
 choosen_date= cal.get_date()
 

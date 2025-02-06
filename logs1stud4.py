@@ -9,7 +9,9 @@ Logs4s.title("Pieteikšanās")
 Logs4s.geometry("300x500")
 Logs4s.configure(background="#f9f9f9")
 
-
+def uzlogu1s():
+    Logs4s.destroy()
+    subprocess.call(['python', 'logs1stud.py'])
 
 
 
@@ -22,7 +24,7 @@ ttk.Label(Logs4s, text="Ko vēlaties darīt mācību konsultācijā:",font="Aria
 info_entry4s = ttk.Entry(Logs4s, width=10, font="Arial",background='#f9f9f9')
 info_entry4s.grid(row=4, column=0, padx=20, pady=10)
 
-tk.Button(Logs4s, text="Pieteikties",font="Arial",bd=5,command=lambda:pieteikties()).grid(row=5, column=0, padx=1, pady=10)
+tk.Button(Logs4s, text="Pieteikties",font="Arial",bd=5,command=lambda:uzlogu1s()).grid(row=5, column=0, padx=1, pady=10)
 
 
 
