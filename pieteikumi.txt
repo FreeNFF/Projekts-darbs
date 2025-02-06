@@ -1,2 +1,1 @@
-Name: Alie, Age: 30, City: New York.Name: Alie, Age: 30, City: New York.Name: Alie, Age: 30, City: New York.
-Name: Alie, Age: 30, City: New York.
+ 
