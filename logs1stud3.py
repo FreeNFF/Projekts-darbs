@@ -5,7 +5,7 @@ from tkinter import messagebox
 import subprocess
 import calendar
 from datetime import date
-from tkcalendar import Calendar
+from tkcalendar import Calendar#pip install tkcalendar
 
 Logs3s=Tk()
 Logs3s.title("Kalendārs")

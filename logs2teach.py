@@ -17,13 +17,12 @@ Logs2t.configure(background="#f9f9f9")
 global kabinets_entry
 global sakums_entry
 global beigas_entry
-global diena_entry
 
 
 global kabinets
 global kons_sakums
 global beigas_kons
-global diena
+global datums
 
 def get_selected_date():
     date_select = cal.get_date()
@@ -32,8 +31,11 @@ def get_selected_date():
 
 
 # Create a Date Entry widget
+ttk.Label(Logs2t, text="Datums",font="Arial 15",background='#f9f9f9').grid(row=7, column=1, padx=10, pady=10)
 cal = DateEntry(Logs2t, width=12, background="darkblue", foreground="white", borderwidth=2)
-cal.grid(row=7,column=1,pady=5,padx=5)
+cal.grid(row=8,column=1,pady=5,padx=5)
+
+
 
 # Create a button to get the selected date
 # get_date_button = tk.Button(Logs2t, text="Get Selected Date", command=get_selected_date)
@@ -68,8 +70,8 @@ beigas_kons = beigas_entry.get()
 # diena_entry.grid(row=7, column=1, padx=10, pady=10)
 
 
-tk.Button(Logs2t, text="Pieteikt",font="Arial",bd=5, command=lambda:()).grid(row=8, column=1, padx=20, pady=20)
-tk.Button(Logs2t, text="Atgriezties",font="Arial",bd=5, command=lambda:uzlogu1()).grid(row=9, column=1, padx=20, pady=20)
+tk.Button(Logs2t, text="Pieteikt",font="Arial",bd=5, command=lambda:()).grid(row=9, column=1, padx=20, pady=20)
+tk.Button(Logs2t, text="Atgriezties",font="Arial",bd=5, command=lambda:uzlogu1()).grid(row=10, column=1, padx=20, pady=20)
 
 def uzlogu1():
     Logs2t.destroy()

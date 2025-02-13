@@ -31,7 +31,7 @@ global choosen_date
 
 
 def grad_date():
-    choosen_date = date.cal.get_date()
+    choosen_date = cal.selection_get()
     izveletsd = int(choosen_date.strftime('%d'))
     izveletsm= int(choosen_date.strftime('%m'))
     izveletsg = int(choosen_date.strftime('%Y'))
@@ -41,6 +41,7 @@ def grad_date():
     print(izveletsd,izveletsm,izveletsg)
     Logs3t.destroy()
     subprocess.call(['python', 'logs4teach.py'])
+    return choosen_date
     
     
 
