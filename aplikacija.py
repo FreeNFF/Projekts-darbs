@@ -14,6 +14,28 @@ import subprocess
 
 #python .\aplikacija.py
 
+#-------------------------------------
+#1. Variants
+#
+# Atseviscā failā vert.py
+# VALUE = 222
+# Vajadzigajos failos:
+# from constants import VALUE
+#
+# 2. Variants
+# Main failā: 
+# import os
+# os.environ["MY_CONSTANT"] = "42"  # Set once in a main script
+# 
+# Citos failos: 
+# import os
+# MY_CONSTANT = int(os.getenv("MY_CONSTANT", 42))  # Ensure it stays the same
+#
+
+
+
+
+
 Logs=Tk()# loga objekts
 Logs.title("Mācību konsultācijas")
 Logs.geometry("300x500")
