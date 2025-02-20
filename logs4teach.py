@@ -4,10 +4,12 @@ from tkinter import ttk
 from tkinter import messagebox
 import subprocess
 import calendar
-from logs3teach import *
 
 
-print(choosen_date)
+
+
+
+
 
 Logs4t=Tk()
 Logs4t.title("Konsultācija")

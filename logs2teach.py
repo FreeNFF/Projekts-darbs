@@ -29,6 +29,15 @@ def get_selected_date():
     # selected_date_label.config(text=f"Selected Date: {selected_date}")
     return date_select
 
+def saglabat():
+    values = [kabinets_entry.get(),sakums_entry.get(),beigas_entry.get()]
+    if all (value.strip().isdigit() for value in values):
+        with open ("Skolotaji.csv","a") as file:
+    else:
+        messagebox.showerror("Kļūda", "Nav ievadīta atbilstoša informācija!")
+
+
+
 
 # Create a Date Entry widget
 ttk.Label(Logs2t, text="Datums",font="Arial 15",background='#f9f9f9').grid(row=7, column=1, padx=10, pady=10)
@@ -70,7 +79,7 @@ beigas_kons = beigas_entry.get()
 # diena_entry.grid(row=7, column=1, padx=10, pady=10)
 
 
-tk.Button(Logs2t, text="Pieteikt",font="Arial",bd=5, command=lambda:()).grid(row=9, column=1, padx=20, pady=20)
+tk.Button(Logs2t, text="Pieteikt",font="Arial",bd=5, command=lambda:saglabat()).grid(row=9, column=1, padx=20, pady=20)
 tk.Button(Logs2t, text="Atgriezties",font="Arial",bd=5, command=lambda:uzlogu1()).grid(row=10, column=1, padx=20, pady=20)
 
 def uzlogu1():

@@ -19,7 +19,7 @@ def uzlogu5s():
 
 def uzlogu1():
     Logs1s.destroy()
-    subprocess.call(['python', 'aplikacija.py'])
+    subprocess.call(['python', '1aplikacija.py'])
 
 
 

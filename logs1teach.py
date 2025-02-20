@@ -18,7 +18,7 @@ tk.Button(Logs1t, text="Izrakstīties",font="Arial",bd=5, command=lambda:uzlogu1
 
 def uzlogu1():
     Logs1t.destroy()
-    subprocess.call(['python', 'aplikacija.py'])
+    subprocess.call(['python', '1aplikacija.py'])
 
 def uzlogu2():
     Logs1t.destroy()
