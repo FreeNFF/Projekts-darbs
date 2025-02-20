@@ -27,10 +27,10 @@ class CalendarApp:#izveido klasi
         
         self.highlight_dates()
 
-        view_button = ttk.Button(frame, text="Apskatīt konsultāciju", command=self.view_details)#Poga info apskatīšanai
-        view_button.pack(pady=20)
+        # view_button = ttk.Button(frame, text="Pieteikties konsultācijai", command=self.view_details)#Poga info apskatīšanai
+        # view_button.pack(pady=20)
         
-        add_button = ttk.Button(frame, text="Pievienot/Labot konsultāciju", command=self.open_input_page)
+        add_button = ttk.Button(frame, text="Pieteikties konsultācijai", command=self.open_input_page)
         add_button.pack(pady=20)
         izrakstisanas = ttk.Button(root, text="Izrakstīties", command=self.uzlogu1)
         izrakstisanas.pack(pady=20)#Izrakstīšanās poga
@@ -41,7 +41,7 @@ class CalendarApp:#izveido klasi
 
     def open_input_page(self):#uzpiežot pogu atveras labošanas vai ievadīšanas lapa 
         input_window = tk.Toplevel(self.root)
-        input_window.title("Pievienot/Labot konsultāciju")
+        input_window.title("Pieteikties konsultācijai")
         input_window.geometry("300x500")
         ttk.Label(input_window, text="Izvēlieties datumu:").pack()
         input_calendar = Calendar(input_window, selectmode='day')

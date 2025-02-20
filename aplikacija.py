@@ -56,7 +56,7 @@ def login():
             if row['\ufefflietotajs'] == username and row['parole'] == password:
                 print(username)
                 Logs.destroy()
-                subprocess.call(['python', '2skolens.py'])
+                subprocess.call(['python', 'aplikacija2py'])
                 return
 
     with open('Skolotaji.csv',mode='r',newline='', encoding="utf-8") as file:
@@ -66,7 +66,7 @@ def login():
             if row['\ufefflietotajs'] == username and row['parole'] == password:
                 print(username)
                 Logs.destroy()
-                subprocess.call(['python', '3sko3teach.py'])
+                subprocess.call(['python', 'aplikacija3.py'])
                 return
     messagebox.showerror("Kļūda", "Nepareizs lietotāja vārds vai parole!")
     return username
