@@ -5,6 +5,7 @@ from tkinter import messagebox
 import subprocess
 import calendar
 from datetime import date
+import datetime
 from tkcalendar import Calendar
 import json
 
@@ -22,7 +23,7 @@ class CalendarApp:#izveido klasi
         frame = ttk.Frame(self.root)#izveido rāmi
         frame.pack(pady=20, padx=20)#novieto rāmi
         
-        self.calendar = Calendar(frame, selectmode='day')#kalendāru ievieto rāmi(izveido kalendāru)
+        self.calendar = Calendar(frame, selectmode='day', date_pattern="mm/dd/yyyy")#kalendāru ievieto rāmi(izveido kalendāru)
         self.calendar.pack()
         
         self.highlight_dates()
@@ -43,10 +44,11 @@ class CalendarApp:#izveido klasi
         input_window = tk.Toplevel(self.root)
         input_window.title("Pievienot/Labot konsultāciju")
         input_window.geometry("300x500")
-        ttk.Label(input_window, text="Izvēlieties datumu:").pack()
-        input_calendar = Calendar(input_window, selectmode='day')
-        input_calendar.pack()
         
+        ttk.Label(input_window, text="Izvēlieties datumu:").pack()
+        input_calendar = Calendar(input_window, selectmode='day', date_pattern="mm/dd/yyyy")
+        input_calendar.pack()
+        self.highlight_dates(input_calendar)
         ttk.Label(input_window, text="Ievadiet informāciju:").pack()
         text_entry = tk.Text(input_window, width=40, height=5)
         text_entry.pack()
@@ -64,6 +66,7 @@ class CalendarApp:#izveido klasi
             if info:
                 self.data[date] = info
                 self.save_data()
+                self.highlight_dates()
                 messagebox.showinfo("Viss izdevies", "Informācija veiksmīgi pievienota!")
                 input_window.destroy()
             else:
@@ -78,7 +81,7 @@ class CalendarApp:#izveido klasi
     
     def view_details(self):
         selected_date = self.calendar.get_date()
-        info = self.data.get(selected_date, "Nav konsultācija šajā datumā!.")
+        info = self.data.get(selected_date, "Nav konsultācija šajā datumā!")
         
         details_window = tk.Toplevel(self.root)
         details_window.title(f"Informācija {selected_date}")
@@ -88,11 +91,23 @@ class CalendarApp:#izveido klasi
         
         ttk.Button(details_window, text="Aizvērt", command=details_window.destroy).pack(pady=20)
         
-    def highlight_dates(self):
-        self.calendar.calevent_remove('all')
-        for date in self.data.keys():
-            self.calendar.calevent_create(date, "Saved Info", "reminder")
-        self.calendar.tag_config("reminder", background="yellow", foreground="black")
+    def highlight_dates(self, calendar_widget=None):
+        calendar_widget = calendar_widget or self.calendar  # Clear previous highlights
+        calendar_widget.calevent_remove('all')
+        # Configure event tag for highlighting
+        calendar_widget.tag_config("reminder", background="yellow", foreground="black")
+
+        for date_str in self.data.keys():
+            try:
+                # Convert string date to datetime object
+                date_obj = datetime.datetime.strptime(date_str, "%m/%d/%Y").date()
+                
+                # Ensure date is correctly added to the calendar
+                calendar_widget.calevent_create(date_obj, "Saved Info", "reminder")
+            except ValueError:
+                continue  # Skip invalid date formats
+
+        calendar_widget.update_idletasks()  # Refresh UI to show highlights
     
 
     def save_data(self):
