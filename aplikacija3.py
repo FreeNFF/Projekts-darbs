@@ -84,6 +84,7 @@ class CalendarApp:#izveido klasi
         info = self.data.get(selected_date, "Nav konsultācija šajā datumā!")
         
         details_window = tk.Toplevel(self.root)
+        details_window.geometry("300x500")
         details_window.title(f"Informācija {selected_date}")
         
         ttk.Label(details_window, text=f"Datums: {selected_date}", font=("Arial", 12, "bold")).pack(pady=5)

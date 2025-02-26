@@ -43,15 +43,80 @@ class CalendarApp:#izveido klasi
         info = self.data.get(selected_date, "Nav konsultācija šajā datumā!")
         
         details_window = tk.Toplevel(self.root)
+        details_window.geometry("300x500")
         details_window.title(f"Informācija {selected_date}")
-        
+
+        self.details_window = details_window
+
         ttk.Label(details_window, text=f"Datums: {selected_date}", font=("Arial", 12, "bold")).pack(pady=5)
         ttk.Label(details_window, text=info, wraplength=300, justify="left").pack(pady=5)
-        tkk.Button(details_window, text="Pieteikties", command=self.pieteikties())
+        ttk.Button(details_window, text="Pieteikties", command=self.pieteikties).pack(pady=10)
         ttk.Button(details_window, text="Aizvērt", command=details_window.destroy).pack(pady=20)
         
-    def pieteikties():
-        print()
+        
+    def pieteikties(self):
+    # Aizver "Apskatīt konsultāciju" logu
+        if hasattr(self, 'details_window') and self.details_window:
+            self.details_window.destroy()  # Aizver "Apskatīt konsultāciju" logu
+    
+        selected_date = self.calendar.get_date()
+        pieteikties_logs  = tk.Toplevel(self.root)
+        pieteikties_logs.geometry("300x500")
+        pieteikties_logs.title(f"Pieteikšanās {selected_date}")
+
+    # Ievades lauki vārdiem, uzvārdiem un konsultācijas tēmai
+        ttk.Label(pieteikties_logs, text="Vārds:").pack(pady=5)
+        vards_entry = ttk.Entry(pieteikties_logs)
+        vards_entry.pack(pady=5)
+
+        ttk.Label(pieteikties_logs, text="Uzvārds:").pack(pady=5)
+        uzvards_entry = ttk.Entry(pieteikties_logs)
+        uzvards_entry.pack(pady=5)
+
+        ttk.Label(pieteikties_logs, text="Konsultācijas tēma:").pack(pady=5)
+        temats_entry = ttk.Entry(pieteikties_logs)
+        temats_entry.pack(pady=5)
+
+    # Funkcija, lai saglabātu pieteikšanos
+        def save_pieteikums():
+            # konsultacija = 
+            vards = vards_entry.get()
+            uzvards = uzvards_entry.get()
+            temats = temats_entry.get()
+
+            if not vards or not uzvards or not temats:
+                messagebox.showerror("Kļūda", "Lūdzu, aizpildiet visus laukus!")
+                return
+
+        # Saglabā pieteikšanās informāciju JSON failā
+            pieteikums = {
+                "Konsultacija":"",
+                "vards": vards,
+                "uzvards": uzvards,
+                "temats": temats
+            }
+
+        # Nodrošina, ka self.data[selected_date] ir saraksts, ja tas vēl nav
+            if selected_date not in self.data or not isinstance(self.data[selected_date], list):
+                self.data[selected_date] = []  # Ja nav saraksta, izveido tukšu sarakstu
+
+            self.data[selected_date].append(pieteikums)  # Pievieno pieteikumu sarakstam
+
+        # Saglabā datus
+            self.save_data()
+
+            messagebox.showinfo("Pieteikšanās apstiprinājums", f"Pieteikšanās veiksmīgi saglabāta datumam {selected_date}!")
+            pieteikties_logs.destroy()
+
+    # Poga, lai saglabātu pieteikšanos
+        ttk.Button(pieteikties_logs, text="Pieteikties", command=save_pieteikums).pack(pady=10)
+
+    # Poga, lai aizvērtu logu
+        ttk.Button(pieteikties_logs, text="Aizvērt", command=pieteikties_logs.destroy).pack(pady=5)
+
+
+
+
 
     def highlight_dates(self, calendar_widget=None):
         calendar_widget = calendar_widget or self.calendar  # Clear previous highlights
