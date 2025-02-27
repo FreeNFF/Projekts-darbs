@@ -335,19 +335,19 @@ import subprocess#pip install tkcalendar
 from PIL import Image, ImageTk
 
 def start_move(event):
-    """Store the initial mouse position when the user clicks the title bar."""
-    Logs.x = event.x_root
-    Logs.y = event.y_root
+    
+    Logs.x = event.x_logs
+    Logs.y = event.y_logs
 
 def move_window(event):
-    """Move the window based on the mouse drag movement."""
-    dx = event.x_root - Logs.x  # Change in X position
-    dy = event.y_root - Logs.y  # Change in Y position
+    
+    dx = event.x_logs - Logs.x  
+    dy = event.y_logs - Logs.y  
     x = Logs.winfo_x() + dx
     y = Logs.winfo_y() + dy
-    Logs.geometry(f"+{x}+{y}")  # Update window position
-    Logs.x = event.x_root  # Update stored position
-    Logs.y = event.y_root
+    Logs.geometry(f"+{x}+{y}") 
+    Logs.x = event.x_logs 
+    Logs.y = event.y_logs
 
 Logs=tk.Tk()# loga objekts
 Logs.title("Mācību konsultācijas")
@@ -369,20 +369,6 @@ title_bar.bind("<B1-Motion>", move_window)  # Move window when dragging
 
 content_frame = tk.Frame(Logs, bg="#f9f9f9")
 content_frame.pack(fill="both", expand=True)
-
-# tk.Label(content_frame, text="Your content goes here").pack(pady=50)
-
-
-
-
-
-
-
-
-
-
-
-
 
 def login():
 
@@ -411,9 +397,6 @@ def login():
                 return
     messagebox.showerror("Kļūda", "Nepareizs lietotāja vārds vai parole!")
     return username
-
-
-
 
 ttk.Label(Logs, text="Lietotājvārds",font="Arial 20",background='#f9f9f9').pack(pady=14)
 username_entry = ttk.Entry(Logs, font="Arial",background='#f9f9f9')
