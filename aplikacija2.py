@@ -51,8 +51,8 @@ class CalendarApp:#izveido klasi
 
         ttk.Label(details_window, text=f"Datums: {selected_date}", font=("Arial", 12, "bold")).pack(pady=5)
         ttk.Label(details_window, text=info, wraplength=300, justify="left").pack(pady=5)
-        ttk.Button(details_window, text="Pieteikties", command=self.pieteikties).pack(pady=10)
-        ttk.Button(details_window, text="Aizvērt", command=details_window.destroy).pack(pady=20)
+        ttk.Button(details_window, text="Pieteikties", command=self.pieteikties,fg="green",bd=5).pack(pady=10)
+        ttk.Button(details_window, text="Aizvērt", command=details_window.destroy,fg="red",bd=5).pack(pady=20)
         
         
     def pieteikties(self):
@@ -111,10 +111,10 @@ class CalendarApp:#izveido klasi
             pieteikties_logs.destroy()
 
     # Poga, lai saglabātu pieteikšanos
-        ttk.Button(pieteikties_logs, text="Pieteikties", command=save_pieteikums).pack(pady=10)
+        ttk.Button(pieteikties_logs, text="Pieteikties", command=save_pieteikums,fg="green",bd=5).pack(pady=10)
 
     # Poga, lai aizvērtu logu
-        ttk.Button(pieteikties_logs, text="Aizvērt", command=pieteikties_logs.destroy).pack(pady=5)
+        ttk.Button(pieteikties_logs, text="Aizvērt", command=pieteikties_logs.destroy,fg="red",bd=5).pack(pady=5)
 
 
 

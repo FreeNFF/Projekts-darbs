@@ -75,14 +75,22 @@ def login():
 
 
 
-ttk.Label(Logs, text="Lietotājvārds",font="Arial 20",background='#f9f9f9').grid(row=2, column=1, padx=30, pady=40)
+ttk.Label(Logs, text="Lietotājvārds",font="Arial 20",background='#f9f9f9').grid(row=2, column=1, padx=30, pady=14)
 username_entry = ttk.Entry(Logs, font="Arial",background='#f9f9f9')
-username_entry.grid(row=3, column=1, padx=30, pady=10)
-ttk.Label(Logs, text="Parole",font="Arial 20",background='#f9f9f9').grid(row=4, column=1, padx=30, pady=40)
+username_entry.grid(row=3, column=1, padx=30, pady=14)
+ttk.Label(Logs, text="Parole",font="Arial 20",background='#f9f9f9').grid(row=4, column=1, padx=30, pady=14)
 password_entry = ttk.Entry(Logs, font="Arial",background='#f9f9f9')
 password_entry = ttk.Entry(Logs, show="*")#Ievadot paroli rāda "*" simbolu vietā
-password_entry.grid(row=5, column=1, padx=30, pady=10)
+password_entry.grid(row=5, column=1, padx=30, pady=14)
 
-tk.Button(Logs, text="Pieslēgties",font="Arial",bd=5, command=login).grid(row=6, column=1, padx=100, pady=40)
+tk.Button(Logs, text="Pieslēgties",font="Arial",bd=5, command=login,fg="green").grid(row=6, column=1, padx=100, pady=14)
+
+foto_frame=tk.Frame(Logs, background='#f9f9f9')
+foto_frame.grid(row=7,column=1,padx=10,pady=14)
+foto_image=Image.open("Kekavas vidusskola-870x1110_11.png")
+resized_foto=foto_image.resize((100,120))
+foto = ImageTk.PhotoImage(resized_foto)
+foto_label=ttk.Label(foto_frame,image=foto, background='#f9f9f9')
+foto_label.grid(row=7,column=1,padx=10,pady=14)
 
 Logs.mainloop()

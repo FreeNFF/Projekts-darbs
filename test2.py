@@ -203,11 +203,23 @@ class CalendarApp:#izveido klasi
         save_button = ttk.Button(input_window, text="Saglabāt", command=save_data)#Informācijas saglabāšanas poga
         save_button.pack(pady=5)
 
-        ttk.Label(input_window, text="Pievienot konsultāciju").pack(pady=5)
-        New_consultation = ttk.Entry(input_window)
-        New_consultation.pack()
-        button_save = ttk.Button(input_window, text="Pievienot")#, command=data_save)#Informācijas saglabāšanas poga
-        button_save.pack(pady=5)
+        # ttk.Label(input_window, text="Pievienot konsultāciju").pack(pady=5)
+        # New_consultation = ttk.Entry(input_window)
+        # New_consultation.pack()
+        # button_save = ttk.Button(input_window, text="Pievienot")#, command=data_save)#Informācijas saglabāšanas poga
+        # button_save.pack(pady=5)
+
+        # def data_save():
+        #     date = input_calendar.get_date()
+        #     info = New_consultation.get("1.0", tk.END).strip()
+        #     if info:
+        #         self.data[date] = info
+        #         self.save_data()
+        #         self.highlight_dates()
+        #         messagebox.showinfo("Viss izdevies", "Informācija veiksmīgi pievienota!")
+        #         input_window.destroy()
+        #     else:
+        #         messagebox.showwarning("Kļūda", "Ievadīta kļūdaina informācija!")
 
     
     
@@ -244,6 +256,10 @@ class CalendarApp:#izveido klasi
     def save_data(self):
         with open(self.data_file, "w") as file:
             json.dump(self.data, file)
+        
+    # def data_save(self):
+    #     with open(self.data_file, "w") as file:
+    #         json.dump(self.data, file)
     
     def load_data(self):
         try:
