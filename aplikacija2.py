@@ -8,6 +8,7 @@ from datetime import date
 import datetime
 from tkcalendar import Calendar
 import json
+import os
 
 class CalendarApp:#izveido klasi
     def __init__(self, root):#izveido jaunu logu
@@ -79,7 +80,8 @@ class CalendarApp:#izveido klasi
 
     # Funkcija, lai saglabātu pieteikšanos
         def save_pieteikums():
-            # konsultacija = 
+            #konsultacija =
+            #text_entry1 = os.getenv("text_entry1", text_entry)
             vards = vards_entry.get()
             uzvards = uzvards_entry.get()
             temats = temats_entry.get()

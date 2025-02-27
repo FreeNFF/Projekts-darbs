@@ -8,6 +8,7 @@ from datetime import date
 import datetime
 from tkcalendar import Calendar
 import json
+import os
 
 class CalendarApp:#izveido klasi
     def __init__(self, root):#izveido jaunu logu
@@ -51,6 +52,7 @@ class CalendarApp:#izveido klasi
         self.highlight_dates(input_calendar)
         ttk.Label(input_window, text="Ievadiet informāciju:").pack()
         text_entry = tk.Text(input_window, width=40, height=5)
+        #os.environ["text_entry1"]=text_entry
         text_entry.pack()
         
         def load_existing_info():

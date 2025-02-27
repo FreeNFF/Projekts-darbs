@@ -56,7 +56,7 @@ def login():
             if row['\ufefflietotajs'] == username and row['parole'] == password:
                 print(username)
                 Logs.destroy()
-                subprocess.call(['python', 'aplikacija2py'])
+                subprocess.call(['python', 'aplikacija2.py'])
                 return
 
     with open('Skolotaji.csv',mode='r',newline='', encoding="utf-8") as file:
