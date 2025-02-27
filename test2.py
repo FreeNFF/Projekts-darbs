@@ -178,10 +178,6 @@ class CalendarApp:#izveido klasi
         text_entry = tk.Text(input_window, width=40, height=5)
         #os.environ["text_entry1"]=text_entry
         text_entry.pack()
-
-        ttk.Label(input_window, text="Pievienot konsultāciju").pack(pady=5)
-        New_consultation = ttk.Entry(input_window)
-        New_consultation.pack()
         
         def load_existing_info():
             date = input_calendar.get_date()
@@ -206,6 +202,12 @@ class CalendarApp:#izveido klasi
         
         save_button = ttk.Button(input_window, text="Saglabāt", command=save_data)#Informācijas saglabāšanas poga
         save_button.pack(pady=5)
+
+        ttk.Label(input_window, text="Pievienot konsultāciju").pack(pady=5)
+        New_consultation = ttk.Entry(input_window)
+        New_consultation.pack()
+        button_save = ttk.Button(input_window, text="Pievienot")#, command=data_save)#Informācijas saglabāšanas poga
+        button_save.pack(pady=5)
 
     
     
