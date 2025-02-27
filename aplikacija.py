@@ -21,14 +21,7 @@ Logs=tk.Tk()# loga objekts
 Logs.title("Mācību konsultācijas")
 Logs.geometry("300x500")
 Logs.configure(background="#f9f9f9")
-Logs.overrideredirect(True)
-Logs.wm_attributes("-topmost", True)
-Logs.wm_attributes("-toolwindow", False)
-Logs.wm_withdraw()  
-Logs.after(10, Logs.wm_deiconify)
-
-
-
+Logs.overrideredirect(True)  
 
 title_bar = tk.Frame(Logs, bg="#98c41c", relief="raised", bd=2)
 title_bar.pack(side="top", fill="x")
@@ -36,7 +29,7 @@ title_bar.pack(side="top", fill="x")
 title_label = tk.Label(title_bar, text="Mācību konsultācijas", font=("Roboto",12,"bold"), bg="#98c41c", fg="#f9f9f9")
 title_label.pack(side="left", padx=10)
 
-close_button = tk.Button(title_bar, text="X", bg="red", fg="#f9f9f9", command=Logs.destroy)
+close_button = tk.Button(title_bar, text="Aizvērt", bg="red", fg="#f9f9f9", command=Logs.destroy)
 close_button.pack(side="right", padx=5)
 
 title_bar.bind("<Button-1>", start_move)  

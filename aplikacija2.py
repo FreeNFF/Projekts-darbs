@@ -92,7 +92,6 @@ class CalendarApp:#izveido klasi
 
         # Saglabā pieteikšanās informāciju JSON failā
             pieteikums = {
-                "Konsultacija":"",
                 "vards": vards,
                 "uzvards": uzvards,
                 "temats": temats
@@ -137,7 +136,7 @@ class CalendarApp:#izveido klasi
     
 
     def save_data(self):
-        with open(self.data_file, "w") as file:
+        with open(self.data_file, "a") as file:
             json.dump(self.data, file)
     
     def load_data(self):
