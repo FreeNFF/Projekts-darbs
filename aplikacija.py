@@ -29,8 +29,8 @@ title_bar.pack(side="top", fill="x")
 title_label = tk.Label(title_bar, text="Mācību konsultācijas", font=("Roboto",12,"bold"), bg="#98c41c", fg="#f9f9f9")
 title_label.pack(side="left", padx=10)
 
-close_button = tk.Button(title_bar, text="Aizvērt", bg="red", fg="#f9f9f9", command=Logs.destroy)
-close_button.pack(side="right", padx=5)
+close_button = tk.Button(title_bar, text="Aizvērt", bg="red", font=("Roboto",8,"bold"),fg="#f9f9f9", bd=3,command=Logs.destroy)
+close_button.pack(side="right", padx=5,pady=1)
 
 title_bar.bind("<Button-1>", start_move)  
 title_bar.bind("<B1-Motion>", move_window)  
@@ -74,15 +74,15 @@ password_entry = ttk.Entry(Logs, font="Arial",background='#f9f9f9')
 password_entry = ttk.Entry(Logs, show="*")#Ievadot paroli rāda "*" simbolu vietā
 password_entry.pack(pady=14)
 
-tk.Button(Logs, text="Pieslēgties",font="Arial",bd=5, command=login,fg="green").pack(pady=14)
+tk.Button(Logs, text="Pieslēgties",font=("Roboto",12,"bold"), bd=6,command=login,bg="#98c41c",fg="white").pack(pady=10)
 
 foto_frame=tk.Frame(Logs, background='#f9f9f9')
-foto_frame.pack(pady=14)
+foto_frame.pack(pady=7)
 foto_image=Image.open("Kekavas vidusskola-870x1110_11.png")
 resized_foto=foto_image.resize((100,120))
 foto = ImageTk.PhotoImage(resized_foto)
 foto_label=ttk.Label(foto_frame,image=foto, background='#f9f9f9')
-foto_label.pack(pady=14)
+foto_label.pack(pady=7)
 
 Logs.mainloop()
 
