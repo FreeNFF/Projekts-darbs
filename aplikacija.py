@@ -79,8 +79,8 @@ username_entry = ttk.Entry(Logs, font="Arial",background='#f9f9f9')
 username_entry.grid(row=3, column=1, padx=30, pady=10)
 ttk.Label(Logs, text="Parole",font="Arial 20",background='#f9f9f9').grid(row=4, column=1, padx=30, pady=40)
 password_entry = ttk.Entry(Logs, font="Arial",background='#f9f9f9')
+password_entry = ttk.Entry(Logs, show="*")#Ievadot paroli rāda "*" simbolu vietā
 password_entry.grid(row=5, column=1, padx=30, pady=10)
-
 
 tk.Button(Logs, text="Pieslēgties",font="Arial",bd=5, command=login).grid(row=6, column=1, padx=100, pady=40)
 
