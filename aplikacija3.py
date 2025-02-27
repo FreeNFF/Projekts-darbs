@@ -60,7 +60,7 @@ class CalendarApp:#izveido klasi
             text_entry.delete("1.0", tk.END)
             text_entry.insert("1.0", self.data.get(date, ""))
         
-        load_existing_info()  # Load existing info for the initially selected date
+        load_existing_info()  # Parāda info izvēlētajam datumam
         
         def save_data():
             date = input_calendar.get_date()
@@ -95,22 +95,20 @@ class CalendarApp:#izveido klasi
         ttk.Button(details_window, text="Aizvērt", command=details_window.destroy).pack(pady=20)
         
     def highlight_dates(self, calendar_widget=None):
-        calendar_widget = calendar_widget or self.calendar  # Clear previous highlights
+        calendar_widget = calendar_widget or self.calendar  
         calendar_widget.calevent_remove('all')
-        # Configure event tag for highlighting
         calendar_widget.tag_config("reminder", background="yellow", foreground="black")
 
         for date_str in self.data.keys():
             try:
-                # Convert string date to datetime object
                 date_obj = datetime.datetime.strptime(date_str, "%m/%d/%Y").date()
                 
-                # Ensure date is correctly added to the calendar
+                #Pārbauda vai info pievienots pareizi kalendārām
                 calendar_widget.calevent_create(date_obj, "Saved Info", "reminder")
             except ValueError:
-                continue  # Skip invalid date formats
+                continue  # Izlaiž nepareizi formatētos datumus
 
-        calendar_widget.update_idletasks()  # Refresh UI to show highlights
+        calendar_widget.update_idletasks()  
     
 
     def save_data(self):
