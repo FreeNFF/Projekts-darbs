@@ -4,6 +4,7 @@ from tkinter import ttk
 from tkinter import messagebox
 import csv
 import subprocess#pip install tkcalendar
+from PIL import Image, ImageTk
 
 # with open('Skoleni.csv','r',encoding='utf-8') as file:
 #     csv1 = csv.DictReader(file)

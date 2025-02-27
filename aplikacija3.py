@@ -50,10 +50,12 @@ class CalendarApp:#izveido klasi
         input_calendar = Calendar(input_window, selectmode='day', date_pattern="mm/dd/yyyy")
         input_calendar.pack()
         self.highlight_dates(input_calendar)
-        ttk.Label(input_window, text="Ievadiet informāciju:").pack()
+        ttk.Label(input_window, text="Labot informāciju:").pack()
         text_entry = tk.Text(input_window, width=40, height=5)
         #os.environ["text_entry1"]=text_entry
         text_entry.pack()
+
+        
         
         def load_existing_info():
             date = input_calendar.get_date()
