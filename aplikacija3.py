@@ -153,7 +153,7 @@ class CalendarApp:#izveido klasi
         with open(self.data_file, "w") as file:
             json.dump(self.data, file)
     
-    def load_data(self):
+    def load_data(self):#Funkcija
         try:
             with open(self.data_file, "r") as file:
                 return json.load(file)

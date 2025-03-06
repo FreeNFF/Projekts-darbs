@@ -79,7 +79,7 @@ tk.Button(Logs, text="Pieslēgties",font=("Roboto",12,"bold"), bd=6,command=logi
 foto_frame=tk.Frame(Logs, background='#f9f9f9')
 foto_frame.pack(pady=7)
 foto_image=Image.open("Kekavas vidusskola-870x1110_11.png")
-resized_foto=foto_image.resize((100,120))
+resized_foto=foto_image.resize((100,130))
 foto = ImageTk.PhotoImage(resized_foto)
 foto_label=ttk.Label(foto_frame,image=foto, background='#f9f9f9')
 foto_label.pack(pady=7)
