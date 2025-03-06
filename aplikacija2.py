@@ -288,13 +288,13 @@ class CalendarApp:#izveido klasi
     def highlight_dates(self, calendar_widget=None):
         calendar_widget = calendar_widget or self.calendar  
         calendar_widget.calevent_remove('all')
-        calendar_widget.tag_config("reminder", background="yellow", foreground="black")
+        calendar_widget.tag_config("atg", background="yellow", foreground="black")
 
         for date_str in self.data.keys():
             try:
                 date_obj = datetime.datetime.strptime(date_str, "%m/%d/%Y").date()
                 
-                calendar_widget.calevent_create(date_obj, "Saved Info", "reminder")
+                calendar_widget.calevent_create(date_obj, "Saglabātais info", "atg")
             except ValueError:
                 continue  # Izlaiž nepareizi formatētos datumus
 
