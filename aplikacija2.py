@@ -1,6 +1,4 @@
-
-
-
+#pievieno bibliotēkas
 import tkinter as tk
 from tkinter import *
 from tkinter import ttk
@@ -19,13 +17,13 @@ class CalendarApp:#izveido klasi
         self.root = root#pārdēvē logu
         self.root.title("Konsultāciju kalendārs")#loga nosaukums
         root.geometry("300x500")#loga izmēri
-        self.root.overrideredirect(True)  
+        self.root.overrideredirect(True)#noņem pamata lietas logam
 
-        
+        #loga sākumpunkts 
         self.start_x = 0
         self.start_y = 0
 
-        
+        #loga dizainu veidošana
         self.title_bar = tk.Frame(root, bg="#98c41c", relief="raised", bd=2)
         self.title_bar.pack(side="top", fill="x")
 
@@ -44,11 +42,11 @@ class CalendarApp:#izveido klasi
         
         self.create_main_page()#paša loga izveides funkcija
 
-    def start_move(self, event):
+    def start_move(self, event):#funkcija ar kuras palīdzību var kustināt (sāk kustināt logu)
         self.start_x = event.x_root - self.root.winfo_x()
         self.start_y = event.y_root - self.root.winfo_y()
 
-    def move_window(self, event):
+    def move_window(self, event):#funkcija, kura kustinot pelīti pakustina logu
         x = event.x_root - self.start_x
         y = event.y_root - self.start_y
         self.root.geometry(f"+{x}+{y}")
@@ -60,23 +58,24 @@ class CalendarApp:#izveido klasi
         self.calendar = Calendar(frame, selectmode='day', date_pattern="mm/dd/yyyy")#kalendāru ievieto rāmi(izveido kalendāru)
         self.calendar.pack()
         
-        self.highlight_dates()
+        self.highlight_dates()#funkcija, kas iekrāso kalendārā konsultācijas datumus
 
-        view_button = ttk.Button(frame, text="Apskatīt konsultāciju", command=self.view_details)#Poga info apskatīšanai
+        #pievieno pogas
+        view_button = tk.Button(frame, text="Apskatīt konsultāciju",font=("Roboto",10,"bold"),bg="#98c41c",fg="white",bd=3, command=self.view_details)#Poga info apskatīšanai
         view_button.pack(pady=20)
 
-        add_button = ttk.Button(frame, text="Pieteikties konsultācijai", command=self.open_input_page)
+        add_button = tk.Button(frame, text="Pieteikties konsultācijai",font=("Roboto",10,"bold"),bg="#98c41c",fg="white",bd=3, command=self.open_input_page)
         add_button.pack(pady=20)
 
-        izrakstisanas = ttk.Button(root, text="Izrakstīties", command=self.uzlogu1)
+        izrakstisanas = tk.Button(root, text="Izrakstīties",font=("Roboto",10,"bold"),bg="#98c41c",fg="white",bd=3, command=self.uzlogu1)
         izrakstisanas.pack(pady=20)#Izrakstīšanās poga
         
     def uzlogu1(self):#Funkcija izrakstīšanās pogai
         root.destroy()#Aizver logu
         subprocess.call(['python', 'aplikacija.py'])#Atver pierakstīšanās logu
     
-    def view_details(self):
-        selected_date = self.calendar.get_date()
+    def view_details(self):#funkcijas, kas izveido logu, kurā var redzēt 
+        selected_date = self.calendar.get_date()#iegūst izvēlēto datumu 
         info = self.data.get(selected_date, "Nav konsultācija šajā datumā!")
         
         details_window = tk.Toplevel(self.root)
@@ -85,9 +84,9 @@ class CalendarApp:#izveido klasi
 
         self.details_window = details_window
 
-        ttk.Label(details_window, text=f"Datums: {selected_date}", font=("Arial", 12, "bold")).pack(pady=5)
+        ttk.Label(details_window, text=f"Datums: {selected_date}", font=("Roboto", 12, "bold")).pack(pady=5)
         ttk.Label(details_window, text=info, wraplength=300, justify="left").pack(pady=5)
-        ttk.Button(details_window, text="Aizvērt", command=details_window.destroy).pack(pady=20)
+        tk.Button(details_window, text="Aizvērt", font=("Roboto",10,"bold"),bg="#98c41c",fg="white",bd=3,command=details_window.destroy).pack(pady=20)
         
         
     def open_input_page(self):#uzpiežot pogu atveras labošanas vai ievadīšanas lapa 
@@ -112,22 +111,24 @@ class CalendarApp:#izveido klasi
             text_entry.insert("1.0", self.data.get(date, ""))
         
         load_existing_info()  # Parāda info izvēlētajam datumam
-        
+
         def save_data():
             date = input_calendar.get_date()
             info = text_entry.get("1.0", tk.END).strip()
+
             if info:
                 self.data[date] = info
-                self.save_data()
-                self.highlight_dates()
-                messagebox.showinfo("Viss izdevies", "Informācija veiksmīgi pievienota!")
-                input_window.destroy()
             else:
-                messagebox.showwarning("Kļūda", "Ievadīta kļūdaina informācija!")
+                self.data.pop(date, None)  # Remove date if empty
+
+            self.save_data()
+            self.highlight_dates()
+            messagebox.showinfo("Viss izdevies", "Informācija veiksmīgi saglabāta!")
+            input_window.destroy()
         
         input_calendar.bind("<<CalendarSelected>>", lambda e: load_existing_info())
         
-        save_button = ttk.Button(input_window, text="Saglabāt", command=save_data)#Informācijas saglabāšanas poga
+        save_button = tk.Button(input_window, text="Saglabāt", font=("Roboto",10,"bold"),bg="#98c41c",fg="white",bd=3, command=save_data)#Informācijas saglabāšanas poga
         save_button.pack(pady=5)
 
 

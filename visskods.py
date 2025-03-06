@@ -679,15 +679,15 @@ class CalendarApp:#izveido klasi
         
         details_window = tk.Toplevel(self.root)
         details_window.geometry("300x500")
-
-        self.root.overrideredirect(True)  
+        
+        self.details_window.overrideredirect(True)  
 
         
         self.start_x = 0
         self.start_y = 0
 
         
-        self.title_bar = tk.Frame(root, bg="#98c41c", relief="raised", bd=2)
+        self.title_bar = tk.Frame(details_window, bg="#98c41c", relief="raised", bd=2)
         self.title_bar.pack(side="top", fill="x")
 
         self.title_label = tk.Label(self.title_bar, text=("Mācību konsultācijas",selected_date), font=("Roboto", 12, "bold"), bg="#98c41c", fg="#f9f9f9")
@@ -700,6 +700,7 @@ class CalendarApp:#izveido klasi
         self.title_bar.bind("<Button-1>", self.start_move)
         self.title_bar.bind("<B1-Motion>", self.move_window)
 
+
         self.details_window = details_window
 
     def start_move(self, event):
@@ -710,7 +711,6 @@ class CalendarApp:#izveido klasi
         x = event.x_root - self.start_x
         y = event.y_root - self.start_y
         self.root.geometry(f"+{x}+{y}")
-
 
 
         ttk.Label(details_window, text=f"Datums: {selected_date}", font=("Arial", 12, "bold")).pack(pady=5)

@@ -1,3 +1,6 @@
+
+
+
 import tkinter as tk
 from tkinter import *
 from tkinter import ttk
@@ -62,6 +65,9 @@ class CalendarApp:#izveido klasi
         view_button = ttk.Button(frame, text="Apskatīt konsultāciju", command=self.view_details)#Poga info apskatīšanai
         view_button.pack(pady=20)
 
+        add_button = ttk.Button(frame, text="Pieteikties konsultācijai", command=self.open_input_page)
+        add_button.pack(pady=20)
+
         izrakstisanas = ttk.Button(root, text="Izrakstīties", command=self.uzlogu1)
         izrakstisanas.pack(pady=20)#Izrakstīšanās poga
         
@@ -81,69 +87,63 @@ class CalendarApp:#izveido klasi
 
         ttk.Label(details_window, text=f"Datums: {selected_date}", font=("Arial", 12, "bold")).pack(pady=5)
         ttk.Label(details_window, text=info, wraplength=300, justify="left").pack(pady=5)
-        ttk.Button(details_window, text="Pieteikties", command=self.pieteikties).pack(pady=10)
         ttk.Button(details_window, text="Aizvērt", command=details_window.destroy).pack(pady=20)
         
         
-    def pieteikties(self):
-    # Aizver "Apskatīt konsultāciju" logu
-        if hasattr(self, 'details_window') and self.details_window:
-            self.details_window.destroy()  # Aizver "Apskatīt konsultāciju" logu
-    
-        selected_date = self.calendar.get_date()
-        pieteikties_logs  = tk.Toplevel(self.root)
-        pieteikties_logs.geometry("300x500")
-        pieteikties_logs.title(f"Pieteikšanās {selected_date}")
+    def open_input_page(self):#uzpiežot pogu atveras labošanas vai ievadīšanas lapa 
+        input_window = tk.Toplevel(self.root)
+        input_window.title("Pieteikties konsultācijai")
+        input_window.geometry("300x500")
+        
+        ttk.Label(input_window, text="Izvēlieties datumu:").pack()
+        input_calendar = Calendar(input_window, selectmode='day', date_pattern="mm/dd/yyyy")
+        input_calendar.pack()
+        self.highlight_dates(input_calendar)
+        ttk.Label(input_window, text="Pieteikties konsultācijai (vārds, uzvārds, ko vēlies darīt)").pack()
+        text_entry = tk.Text(input_window, width=40, height=5)
+        #os.environ["text_entry1"]=text_entry
+        text_entry.pack()
 
-    # Ievades lauki vārdiem, uzvārdiem un konsultācijas tēmai
-        ttk.Label(pieteikties_logs, text="Vārds:").pack(pady=5)
-        vards_entry = ttk.Entry(pieteikties_logs)
-        vards_entry.pack(pady=5)
+        
+        
+        def load_existing_info():
+            date = input_calendar.get_date()
+            text_entry.delete("1.0", tk.END)
+            text_entry.insert("1.0", self.data.get(date, ""))
+        
+        load_existing_info()  # Parāda info izvēlētajam datumam
+        
+        # def save_data():
+        #     date = input_calendar.get_date()
+        #     info = text_entry.get("1.0", tk.END).strip()
+        #     if info:
+        #         self.data[date] = info
+        #         self.save_data()
+        #         self.highlight_dates()
+        #         messagebox.showinfo("Viss izdevies", "Informācija veiksmīgi pievienota!")
+        #         input_window.destroy()
+        #     else:
+        #         messagebox.showwarning("Kļūda", "Ievadīta kļūdaina informācija!")
 
-        ttk.Label(pieteikties_logs, text="Uzvārds:").pack(pady=5)
-        uzvards_entry = ttk.Entry(pieteikties_logs)
-        uzvards_entry.pack(pady=5)
 
-        ttk.Label(pieteikties_logs, text="Konsultācijas tēma:").pack(pady=5)
-        temats_entry = ttk.Entry(pieteikties_logs)
-        temats_entry.pack(pady=5)
+        def save_data():
+            date = input_calendar.get_date()
+            info = text_entry.get("1.0", tk.END).strip()
 
-    # Funkcija, lai saglabātu pieteikšanos
-        def save_pieteikums():
-            #konsultacija =
-            #text_entry1 = os.getenv("text_entry1", text_entry)
-            vards = vards_entry.get()
-            uzvards = uzvards_entry.get()
-            temats = temats_entry.get()
+            if info:
+                self.data[date] = info
+            else:
+                self.data.pop(date, None)  # Remove date if empty
 
-            if not vards or not uzvards or not temats:
-                messagebox.showerror("Kļūda", "Lūdzu, aizpildiet visus laukus!")
-                return
-
-        # Saglabā pieteikšanās informāciju JSON failā
-            pieteikums = {
-                "vards": vards,
-                "uzvards": uzvards,
-                "temats": temats
-            }
-
-        # Nodrošina, ka self.data[selected_date] ir saraksts, ja tas vēl nav
-            if selected_date not in self.data or not isinstance(self.data[selected_date], list):
-                self.data[selected_date] = []  # Ja nav saraksta, izveido tukšu sarakstu
-
-            self.data[selected_date].append(pieteikums)  # Pievieno pieteikumu sarakstam
-
-        # Saglabā datus
             self.save_data()
-
-            messagebox.showinfo("Pieteikšanās apstiprinājums", f"Pieteikšanās veiksmīgi saglabāta datumam {selected_date}!")
-            pieteikties_logs.destroy()
-
-    # Poga, lai saglabātu pieteikšanos
-        ttk.Button(pieteikties_logs, text="Pieteikties", command=save_pieteikums).pack(pady=10)
-
-    # Poga, lai aizvērtu logu
-        ttk.Button(pieteikties_logs, text="Aizvērt", command=pieteikties_logs.destroy).pack(pady=5)
+            self.highlight_dates()
+            messagebox.showinfo("Viss izdevies", "Informācija veiksmīgi saglabāta!")
+            input_window.destroy()
+        
+        input_calendar.bind("<<CalendarSelected>>", lambda e: load_existing_info())
+        
+        save_button = ttk.Button(input_window, text="Saglabāt", command=save_data)#Informācijas saglabāšanas poga
+        save_button.pack(pady=5)
 
 
 
@@ -152,13 +152,13 @@ class CalendarApp:#izveido klasi
     def highlight_dates(self, calendar_widget=None):
         calendar_widget = calendar_widget or self.calendar  
         calendar_widget.calevent_remove('all')
-        calendar_widget.tag_config("reminder", background="yellow", foreground="black")
+        calendar_widget.tag_config("atg", background="yellow", foreground="black")
 
         for date_str in self.data.keys():
             try:
                 date_obj = datetime.datetime.strptime(date_str, "%m/%d/%Y").date()
                 
-                calendar_widget.calevent_create(date_obj, "Saved Info", "reminder")
+                calendar_widget.calevent_create(date_obj, "Saglabātais info", "atg")
             except ValueError:
                 continue  # Izlaiž nepareizi formatētos datumus
 
