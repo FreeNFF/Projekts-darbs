@@ -702,6 +702,17 @@ class CalendarApp:#izveido klasi
 
         self.details_window = details_window
 
+        def start_move(self, event):
+        self.start_x = event.x_root - self.root.winfo_x()
+        self.start_y = event.y_root - self.root.winfo_y()
+
+    def move_window(self, event):
+        x = event.x_root - self.start_x
+        y = event.y_root - self.start_y
+        self.root.geometry(f"+{x}+{y}")
+
+
+
         ttk.Label(details_window, text=f"Datums: {selected_date}", font=("Arial", 12, "bold")).pack(pady=5)
         ttk.Label(details_window, text=info, wraplength=300, justify="left").pack(pady=5)
         ttk.Button(details_window, text="Aizvērt", command=details_window.destroy).pack(pady=20)
