@@ -91,7 +91,7 @@ class CalendarApp:#izveido klasi
 
         
         
-        def load_existing_info():#funkcija
+        def load_existing_info():#funkcija, kura ielādē jau iepriekš ierakstītos failus
             date = input_calendar.get_date()
             text_entry.delete("1.0", tk.END)
             text_entry.insert("1.0", self.data.get(date, ""))
@@ -105,7 +105,7 @@ class CalendarApp:#izveido klasi
             if info:
                 self.data[date] = info
             else:
-                self.data.pop(date, None)  # Remove date if empty
+                self.data.pop(date, None)
 
             self.save_data()
             self.highlight_dates()
