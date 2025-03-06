@@ -702,7 +702,7 @@ class CalendarApp:#izveido klasi
 
         self.details_window = details_window
 
-        def start_move(self, event):
+    def start_move(self, event):
         self.start_x = event.x_root - self.root.winfo_x()
         self.start_y = event.y_root - self.root.winfo_y()
 
