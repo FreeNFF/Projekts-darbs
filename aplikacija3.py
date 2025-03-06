@@ -29,7 +29,7 @@ class CalendarApp:#izveido klasi
         self.title_label = tk.Label(self.title_bar, text="Mācību konsultācijas", font=("Roboto", 12, "bold"), bg="#98c41c", fg="#f9f9f9")
         self.title_label.pack(side="left", padx=10)
 
-        self.close_button = tk.Button(self.title_bar, text="Aizvērt", bg="red", font=("Roboto", 8, "bold"), bd=3,fg="#f9f9f9", command=root.destroy)#Poga ar kuru aizver visu logu
+        self.close_button = tk.Button(self.title_bar, text="Aizvērt", bg="#c41c1c", font=("Roboto", 8, "bold"), bd=3,fg="#f9f9f9", command=root.destroy)#Poga ar kuru aizver visu logu
         self.close_button.pack(side="right", padx=5,pady=1)
 
         
@@ -67,7 +67,7 @@ class CalendarApp:#izveido klasi
         add_button = tk.Button(frame, text="Pievienot/Labot konsultāciju", font=("Roboto",10,"bold"),bg="#98c41c",fg="white",bd=3, command=self.open_input_page)#Poga jaunas konsultācijas izveidošanai
         add_button.pack(pady=20)
         
-        izrakstisanas = tk.Button(root, text="Izrakstīties", font=("Roboto",10,"bold"),bg="#98c41c",fg="white",bd=3, command=self.uzlogu1)#Poga lai atgrieztos uz pieslēgšanās logu
+        izrakstisanas = tk.Button(root, text="Izrakstīties", font=("Roboto",10,"bold"),bg="#c41c1c",fg="white",bd=3, command=self.uzlogu1)#Poga lai atgrieztos uz pieslēgšanās logu
         izrakstisanas.pack(pady=20)#Izrakstīšanās poga
         
     def uzlogu1(self):#Funkcija izrakstīšanās pogai

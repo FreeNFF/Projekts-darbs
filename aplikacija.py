@@ -29,7 +29,7 @@ title_bar.pack(side="top", fill="x")
 title_label = tk.Label(title_bar, text="Mācību konsultācijas", font=("Roboto",12,"bold"), bg="#98c41c", fg="#f9f9f9")
 title_label.pack(side="left", padx=10)
 
-close_button = tk.Button(title_bar, text="Aizvērt", bg="red", font=("Roboto",8,"bold"),fg="#f9f9f9", bd=3,command=Logs.destroy)
+close_button = tk.Button(title_bar, text="Aizvērt", bg="#c41c1c", font=("Roboto",8,"bold"),fg="#f9f9f9", bd=3,command=Logs.destroy)
 close_button.pack(side="right", padx=5,pady=1)
 
 title_bar.bind("<Button-1>", start_move)  
