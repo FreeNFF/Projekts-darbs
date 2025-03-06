@@ -9,7 +9,7 @@ from datetime import date
 import datetime
 from tkcalendar import Calendar
 import json
-import os
+
 
 class CalendarApp:#izveido klasi
     def __init__(self, root):#izveido jaunu logu

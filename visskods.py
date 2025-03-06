@@ -611,7 +611,6 @@ from tkcalendar import Calendar
 import json
 import os
 
-
 class CalendarApp:#izveido klasi
     def __init__(self, root):#izveido jaunu logu
         self.root = root#pārdēvē logu
@@ -651,6 +650,8 @@ class CalendarApp:#izveido klasi
         y = event.y_root - self.start_y
         self.root.geometry(f"+{x}+{y}")
 
+
+
     def create_main_page(self):#izveido kalendāru un pogas
         frame = ttk.Frame(self.root)#izveido rāmi
         frame.pack(pady=20, padx=20)#novieto rāmi
@@ -660,75 +661,63 @@ class CalendarApp:#izveido klasi
         
         self.highlight_dates()
 
-        view_button = ttk.Button(frame, text="Apskatīt konsultāciju", command=self.view_details)#Poga info apskatīšanai
+        view_button = tk.Button(frame, text="Apskatīt konsultāciju", font=("Roboto",10,"bold"),bg="#98c41c",fg="white",bd=3, command=self.view_details)#Poga info apskatīšanai
         view_button.pack(pady=20)
-
-        add_button = ttk.Button(frame, text="Pieteikties konsultācijai", command=self.open_input_page)
+        
+        add_button = tk.Button(frame, text="Pievienot/Labot konsultāciju", font=("Roboto",10,"bold"),bg="#98c41c",fg="white",bd=3, command=self.open_input_page)
         add_button.pack(pady=20)
-
-        izrakstisanas = ttk.Button(root, text="Izrakstīties", command=self.uzlogu1)
+        
+        izrakstisanas = tk.Button(root, text="Izrakstīties", font=("Roboto",10,"bold"),bg="#98c41c",fg="white",bd=3, command=self.uzlogu1)
         izrakstisanas.pack(pady=20)#Izrakstīšanās poga
         
     def uzlogu1(self):#Funkcija izrakstīšanās pogai
         root.destroy()#Aizver logu
         subprocess.call(['python', 'aplikacija.py'])#Atver pierakstīšanās logu
-    
-    def view_details(self):
-        selected_date = self.calendar.get_date()
-        info = self.data.get(selected_date, "Nav konsultācija šajā datumā!")
-        
-        details_window = tk.Toplevel(self.root)
-        details_window.geometry("300x500")
-        
-        self.details_window.overrideredirect(True)  
+
+    def open_input_page(self):#uzpiežot pogu atveras labošanas vai ievadīšanas lapa 
+        input_window = tk.Toplevel(self.root)
+        input_window.title("Pievienot/Labot konsultāciju")
+        input_window.geometry("300x500")
+        self.input_window.overrideredirect(True)  
 
         
-        self.start_x = 0
-        self.start_y = 0
+        self.start_x1 = 0
+        self.start_y1 = 0
 
         
-        self.title_bar = tk.Frame(details_window, bg="#98c41c", relief="raised", bd=2)
+        self.title_bar = tk.Frame(input_window, bg="#98c41c", relief="raised", bd=2)
         self.title_bar.pack(side="top", fill="x")
 
-        self.title_label = tk.Label(self.title_bar, text=("Mācību konsultācijas",selected_date), font=("Roboto", 12, "bold"), bg="#98c41c", fg="#f9f9f9")
+        self.title_label = tk.Label(self.title_bar, text="Mācību konsultācijas", font=("Roboto", 12, "bold"), bg="#98c41c", fg="#f9f9f9")
         self.title_label.pack(side="left", padx=10)
 
         self.close_button = tk.Button(self.title_bar, text="Aizvērt", bg="red", font=("Roboto", 8, "bold"), bd=3,fg="#f9f9f9", command=root.destroy)
         self.close_button.pack(side="right", padx=5,pady=1)
 
-        
-        self.title_bar.bind("<Button-1>", self.start_move)
-        self.title_bar.bind("<B1-Motion>", self.move_window)
+        self.title_bar.bind("<Button-1>", self.start_move1)
+        self.title_bar.bind("<B1-Motion>", self.move_window1)
 
+        self.create_input()
 
-        self.details_window = details_window
+    def start_move1(self, event):
+        self.start_x1 = event.x_input_window - self.input_window.winfo_x()
+        self.start_y1 = event.y_input_window - self.input_window.winfo_y()
 
-    def start_move(self, event):
-        self.start_x = event.x_root - self.root.winfo_x()
-        self.start_y = event.y_root - self.root.winfo_y()
-
-    def move_window(self, event):
-        x = event.x_root - self.start_x
-        y = event.y_root - self.start_y
-        self.root.geometry(f"+{x}+{y}")
-
-
-        ttk.Label(details_window, text=f"Datums: {selected_date}", font=("Arial", 12, "bold")).pack(pady=5)
-        ttk.Label(details_window, text=info, wraplength=300, justify="left").pack(pady=5)
-        ttk.Button(details_window, text="Aizvērt", command=details_window.destroy).pack(pady=20)
+    def move_window1(self, event):
+        x1 = event.x_input_window - self.start_x1
+        y1 = event.y_input_window - self.start_y1
+        self.input_window.geometry(f"+{x1}+{y1}")
         
         
-    def open_input_page(self):#uzpiežot pogu atveras labošanas vai ievadīšanas lapa 
-        input_window = tk.Toplevel(self.root)
-        input_window.title("Pieteikties konsultācijai")
-        input_window.geometry("300x500")
-        
-        ttk.Label(input_window, text="Izvēlieties datumu:").pack()
-        input_calendar = Calendar(input_window, selectmode='day', date_pattern="mm/dd/yyyy")
+    def create_input(self):
+
+        ttk.Label(text="Izvēlieties datumu:").pack()
+        input_calendar = Calendar(selectmode='day', date_pattern="mm/dd/yyyy")
         input_calendar.pack()
         self.highlight_dates(input_calendar)
-        ttk.Label(input_window, text="Pieteikties konsultācijai (vārds, uzvārds, ko vēlies darīt)").pack()
-        text_entry = tk.Text(input_window, width=40, height=5)
+        ttk.Label(text="Pievienot informāciju (Vards, uzvārds, laiks, kabinets,").pack()
+        ttk.Label(text="Skolēni:):").pack()
+        text_entry = tk.Text(width=40, height=5)
         #os.environ["text_entry1"]=text_entry
         text_entry.pack()
 
@@ -744,34 +733,49 @@ class CalendarApp:#izveido klasi
         def save_data():
             date = input_calendar.get_date()
             info = text_entry.get("1.0", tk.END).strip()
+
             if info:
                 self.data[date] = info
-                self.save_data()
-                self.highlight_dates()
-                messagebox.showinfo("Viss izdevies", "Informācija veiksmīgi pievienota!")
-                input_window.destroy()
             else:
-                messagebox.showwarning("Kļūda", "Ievadīta kļūdaina informācija!")
-        
+                self.data.pop(date, None)  # Remove date if empty
+
+            self.save_data()
+            self.highlight_dates()
+            messagebox.showinfo("Viss izdevies", "Informācija veiksmīgi saglabāta!")
+            input_window.destroy()
+            
+
         input_calendar.bind("<<CalendarSelected>>", lambda e: load_existing_info())
         
-        save_button = ttk.Button(input_window, text="Saglabāt", command=save_data)#Informācijas saglabāšanas poga
+        save_button = tk.Button(text="Saglabāt", font=("Roboto",10,"bold"),bg="#98c41c",fg="white",bd=3, command=save_data)#Informācijas saglabāšanas poga
         save_button.pack(pady=5)
 
-
-
-
-
+    
+    
+    def view_details(self):
+        selected_date = self.calendar.get_date()
+        info = self.data.get(selected_date, "Nav konsultācija šajā datumā!")
+        
+        details_window = tk.Toplevel(self.root)
+        details_window.geometry("300x500")
+        details_window.title(f"Informācija {selected_date}")
+        
+        ttk.Label(details_window, text=f"Datums: {selected_date}", font=("Roboto", 12, "bold")).pack(pady=5)
+        ttk.Label(details_window, text=info, wraplength=300, justify="left").pack(pady=5)
+        
+        tk.Button(details_window, text="Aizvērt", font=("Roboto",10,"bold"),bg="#98c41c",fg="white",bd=3, command=details_window.destroy).pack(pady=20)
+        
     def highlight_dates(self, calendar_widget=None):
         calendar_widget = calendar_widget or self.calendar  
         calendar_widget.calevent_remove('all')
-        calendar_widget.tag_config("atg", background="yellow", foreground="black")
+        calendar_widget.tag_config("reminder", background="yellow", foreground="black")
 
         for date_str in self.data.keys():
             try:
                 date_obj = datetime.datetime.strptime(date_str, "%m/%d/%Y").date()
                 
-                calendar_widget.calevent_create(date_obj, "Saglabātais info", "atg")
+                #Pārbauda vai info pievienots pareizi kalendārām
+                calendar_widget.calevent_create(date_obj, "Saved Info", "reminder")
             except ValueError:
                 continue  # Izlaiž nepareizi formatētos datumus
 

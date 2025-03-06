@@ -1,4 +1,4 @@
-#pievieno bibliotēkas
+#pievieno nepieciešamās bibliotēkas
 import tkinter as tk
 from tkinter import *
 from tkinter import ttk
@@ -9,7 +9,7 @@ from datetime import date
 import datetime
 from tkcalendar import Calendar
 import json
-import os
+
 
 
 class CalendarApp:#izveido klasi
@@ -17,7 +17,7 @@ class CalendarApp:#izveido klasi
         self.root = root#pārdēvē logu
         self.root.title("Konsultāciju kalendārs")#loga nosaukums
         root.geometry("300x500")#loga izmēri
-        self.root.overrideredirect(True)#noņem pamata lietas logam
+        self.root.overrideredirect(True)#noņem sākotnējo loga dizainu
 
         #loga sākumpunkts 
         self.start_x = 0
@@ -76,20 +76,22 @@ class CalendarApp:#izveido klasi
     
     def view_details(self):#funkcijas, kas izveido logu, kurā var redzēt 
         selected_date = self.calendar.get_date()#iegūst izvēlēto datumu 
-        info = self.data.get(selected_date, "Nav konsultācija šajā datumā!")
-        
+        info = self.data.get(selected_date, "Nav konsultācija šajā datumā!")#izvada, ka nav konsultācijas, ja konsultācija nav pieteikta tajā dienā
+        #izveido logu, kā arī nomaina izmērus un tā nosakumu
         details_window = tk.Toplevel(self.root)
         details_window.geometry("300x500")
         details_window.title(f"Informācija {selected_date}")
 
-        self.details_window = details_window
+        self.details_window = details_window#pārmaina logu uz nezināmu details_window
 
+        #Logā parāda konsultācijas informāciju, ja nav tad parāda, ka konsultācijas nav
         ttk.Label(details_window, text=f"Datums: {selected_date}", font=("Roboto", 12, "bold")).pack(pady=5)
         ttk.Label(details_window, text=info, wraplength=300, justify="left").pack(pady=5)
         tk.Button(details_window, text="Aizvērt", font=("Roboto",10,"bold"),bg="#98c41c",fg="white",bd=3,command=details_window.destroy).pack(pady=20)
         
         
     def open_input_page(self):#uzpiežot pogu atveras labošanas vai ievadīšanas lapa 
+        #
         input_window = tk.Toplevel(self.root)
         input_window.title("Pieteikties konsultācijai")
         input_window.geometry("300x500")
