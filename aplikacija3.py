@@ -61,13 +61,13 @@ class CalendarApp:#izveido klasi
         
         self.highlight_dates()
 
-        view_button = ttk.Button(frame, text="Apskatīt konsultāciju", command=self.view_details)#Poga info apskatīšanai
+        view_button = tk.Button(frame, text="Apskatīt konsultāciju", font=("Roboto",10,"bold"),bg="#98c41c",fg="white",bd=3, command=self.view_details)#Poga info apskatīšanai
         view_button.pack(pady=20)
         
-        add_button = ttk.Button(frame, text="Pievienot/Labot konsultāciju", command=self.open_input_page)
+        add_button = tk.Button(frame, text="Pievienot/Labot konsultāciju", font=("Roboto",10,"bold"),bg="#98c41c",fg="white",bd=3, command=self.open_input_page)
         add_button.pack(pady=20)
         
-        izrakstisanas = ttk.Button(root, text="Izrakstīties", command=self.uzlogu1)
+        izrakstisanas = tk.Button(root, text="Izrakstīties", font=("Roboto",10,"bold"),bg="#98c41c",fg="white",bd=3, command=self.uzlogu1)
         izrakstisanas.pack(pady=20)#Izrakstīšanās poga
         
     def uzlogu1(self):#Funkcija izrakstīšanās pogai
@@ -101,18 +101,20 @@ class CalendarApp:#izveido klasi
         def save_data():
             date = input_calendar.get_date()
             info = text_entry.get("1.0", tk.END).strip()
+
             if info:
                 self.data[date] = info
-                self.save_data()
-                self.highlight_dates()
-                messagebox.showinfo("Viss izdevies", "Informācija veiksmīgi pievienota!")
-                input_window.destroy()
             else:
-                messagebox.showwarning("Kļūda", "Ievadīta kļūdaina informācija!")
-        
+                self.data.pop(date, None)  # Remove date if empty
+
+            self.save_data()
+            self.highlight_dates()
+            messagebox.showinfo("Viss izdevies", "Informācija veiksmīgi saglabāta!")
+            input_window.destroy()
+
         input_calendar.bind("<<CalendarSelected>>", lambda e: load_existing_info())
         
-        save_button = ttk.Button(input_window, text="Saglabāt", command=save_data)#Informācijas saglabāšanas poga
+        save_button = tk.Button(input_window, text="Saglabāt", font=("Roboto",10,"bold"),bg="#98c41c",fg="white",bd=3, command=save_data)#Informācijas saglabāšanas poga
         save_button.pack(pady=5)
 
     
@@ -125,10 +127,10 @@ class CalendarApp:#izveido klasi
         details_window.geometry("300x500")
         details_window.title(f"Informācija {selected_date}")
         
-        ttk.Label(details_window, text=f"Datums: {selected_date}", font=("Arial", 12, "bold")).pack(pady=5)
+        ttk.Label(details_window, text=f"Datums: {selected_date}", font=("Roboto", 12, "bold")).pack(pady=5)
         ttk.Label(details_window, text=info, wraplength=300, justify="left").pack(pady=5)
         
-        ttk.Button(details_window, text="Aizvērt", command=details_window.destroy).pack(pady=20)
+        tk.Button(details_window, text="Aizvērt", font=("Roboto",10,"bold"),bg="#98c41c",fg="white",bd=3, command=details_window.destroy).pack(pady=20)
         
     def highlight_dates(self, calendar_widget=None):
         calendar_widget = calendar_widget or self.calendar  
